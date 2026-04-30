@@ -1,7 +1,10 @@
-FROM golang:1.26.2-alpine
+FROM denoland/deno:alpine-2.7.14
 
-RUN go install github.com/air-verse/air@v1.52.3
+WORKDIR /app/src
 
-WORKDIR /app
+# RUN apk add --no-cache watchexec
 
-CMD ["air", "-c", "src/.air.toml"]
+COPY ./src/deno.json src/deno.json
+RUN deno install
+
+CMD ["deno", "run", "--allow-env", "--allow-read", "--allow-write", "src/main.ts"]
