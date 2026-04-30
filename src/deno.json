@@ -1,0 +1,10 @@
+{
+    "tasks": {
+        "run": "deno run --allow-env --allow-read --allow-write main.ts",
+        "build": "deno compile --allow-env --allow-read --allow-write --output ../dist/mookbars main.ts"
+    },
+    "imports": {
+        "nunjucks": "npm:nunjucks@^3",
+        "@types/nunjucks": "npm:@types/nunjucks@^3"
+    }
+}

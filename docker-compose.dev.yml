@@ -1,0 +1,37 @@
+services:
+
+
+#   go-watcher:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.dev
+#     env_file:
+#       - path: ${MB_ENV_FILE:-.env.dev}
+#     volumes:
+#       - .:/app
+#       - go-cache:/go/pkg/mod
+#     depends_on:
+#       - caddy
+#     restart: unless-stopped
+
+#   asset-watcher:
+#     image: node:22-alpine
+#     working_dir: /app
+#     volumes:
+#       - .:/app
+#       - node-modules:/app/node_modules
+#     command: sh -c "npm install && node scripts/dev-assets.js --watch"
+#     restart: unless-stopped
+
+#   caddy:
+#     image: caddy:2-alpine
+#     volumes:
+#       - ./dist:/srv
+#       - ./server:/etc/caddy
+#     ports:
+#       - "8007:8007"
+#     restart: unless-stopped
+
+# volumes:
+#   go-cache:
+#   node-modules:

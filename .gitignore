@@ -1,0 +1,7 @@
+!dist/
+dist/*
+!dist/.gitkeep
+
+!public/
+public/*
+!public/.gitkeep
