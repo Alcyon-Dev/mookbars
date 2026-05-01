@@ -87,5 +87,5 @@ just run    # Build and run the production image locally
 ## Deployment
 
 ```sh
-just deploy 0.2  # Build the production image, tags git + Docker, pushes both
+just deploy 1.0  # Build the production image, tags git + Docker, pushes both
 ```
