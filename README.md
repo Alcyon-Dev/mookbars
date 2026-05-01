@@ -19,6 +19,9 @@ docker run --rm --name mookbars --env-file .env -p 8007:8007 alcyondev/mookbars:
 
 Open [http://localhost:8007](http://localhost:8007).
 
+Any change to the .env file, HTML template, assets (JS, CSS) or Deno app (TS)
+will rebuild and update the static HTML page, just refresh your browser !
+
 ## Deploying Mookbars in production
 
 Add the `alcyondev/mookbars:latest` docker image to your favorite stack,
@@ -42,22 +45,25 @@ internet.
 Links are organised into groups. `MB_GROUPS` is a comma-separated list of group
 keys.
 
-| Variable               | Required | Description                                                                              |
-| ---------------------- | -------- | ---------------------------------------------------------------------------------------- |
-| `MB_GROUPS`            | Yes      | Comma-separated list of group keys, e.g. `db,tools,sites`                               |
-| `MB_GROUP_<KEY>_TITLE` | Yes      | Display title for a group                                                                |
-| `MB_GROUP_<KEY>_LINKS` | Yes      | Comma-separated list of link keys for this group                                         |
-| `MB_GROUP_<KEY>_ICON`  | No       | [Iconify](https://icon-sets.iconify.design/) icon name, e.g. `heroicons:circle-stack`   |
+| Variable               | Required | Description                                                                           |
+| ---------------------- | -------- | ------------------------------------------------------------------------------------- |
+| `MB_GROUPS`            | Yes      | Comma-separated list of group keys, e.g. `db,tools,sites`                             |
+| `MB_GROUP_<KEY>_TITLE` | Yes      | Display title for a group                                                             |
+| `MB_GROUP_<KEY>_LINKS` | Yes      | Comma-separated list of link keys for this group                                      |
+| `MB_GROUP_<KEY>_ICON`  | No       | [Iconify](https://icon-sets.iconify.design/) icon name, e.g. `heroicons:circle-stack` |
 
 ### Links
 
-| Variable              | Required | Description                                                                            |
-| --------------------- | -------- | -------------------------------------------------------------------------------------- |
-| `MB_LINK_<KEY>_LABEL` | Yes      | Display label for a link                                                               |
-| `MB_LINK_<KEY>_URL`   | Yes      | URL for a link                                                                         |
-| `MB_LINK_<KEY>_ICON`  | No       | [Iconify](https://icon-sets.iconify.design/) icon name, e.g. `heroicons:server`       |
+| Variable              | Required | Description                                                                     |
+| --------------------- | -------- | ------------------------------------------------------------------------------- |
+| `MB_LINK_<KEY>_LABEL` | Yes      | Display label for a link                                                        |
+| `MB_LINK_<KEY>_URL`   | Yes      | URL for a link                                                                  |
+| `MB_LINK_<KEY>_ICON`  | No       | [Iconify](https://icon-sets.iconify.design/) icon name, e.g. `heroicons:server` |
 
-Icons use [Iconify](https://icon-sets.iconify.design/), which supports 100+ icon sets including Heroicons, Font Awesome, Material Icons, and more. Browse available icons at [icon-sets.iconify.design](https://icon-sets.iconify.design/).
+Icons use [Iconify](https://icon-sets.iconify.design/), which supports 100+ icon
+sets including Heroicons, Font Awesome, Material Icons, and more. Browse
+available icons at
+[icon-sets.iconify.design](https://icon-sets.iconify.design/).
 
 ### Example
 
