@@ -1,29 +1,22 @@
 {% extends "_base.html" %}
 
 {% block title %}{{ title }}{% endblock %}
+{% block header %}{% endblock %}
 
 {% block content %}
-<h2>Problems found</h2>
-<ul>
-    {% for error in errors %}
-    <li>{{ error }}</li>
-    {% endfor %}
-</ul>
-<h2>MB_* variables</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Variable</th>
-            <th>Value</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for entry in allEnv %}
-        <tr>
-            <td>{{ entry[0] }}</td>
-            <td>{{ entry[1] }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<main class="status-page">
+    <div class="status-card status-card--error">
+        <div class="status-icon">⚠️</div>
+        <h1>Error generating bookmarks</h1>
+        <pre class="error-message">{% for error in errors %}{{ error }}
+{% endfor %}</pre>
+        {% if allEnv %}
+        <details class="error-env">
+            <summary>Environment variables (MB_*)</summary>
+            <pre>{% for entry in allEnv %}{{ entry[0] }}={{ entry[1] }}
+{% endfor %}</pre>
+        </details>
+        {% endif %}
+    </div>
+</main>
 {% endblock %}

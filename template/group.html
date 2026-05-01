@@ -1,0 +1,11 @@
+<section class="group">
+    <h2 class="group__title">
+        {% if group.icon %}<iconify-icon icon="{{ group.icon }}" aria-hidden="true"></iconify-icon>{% endif %}
+        {{ group.title }}
+    </h2>
+    <div class="group__links">
+        {% for link in group.links %}
+        {% include "link.html" %}
+        {% endfor %}
+    </div>
+</section>

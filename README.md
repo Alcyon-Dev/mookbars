@@ -42,18 +42,22 @@ internet.
 Links are organised into groups. `MB_GROUPS` is a comma-separated list of group
 keys.
 
-| Variable               | Description                                               |
-| ---------------------- | --------------------------------------------------------- |
-| `MB_GROUPS`            | Comma-separated list of group keys, e.g. `db,tools,sites` |
-| `MB_GROUP_<KEY>_TITLE` | Display title for a group                                 |
-| `MB_GROUP_<KEY>_LINKS` | Comma-separated list of link keys for this group          |
+| Variable               | Required | Description                                                                              |
+| ---------------------- | -------- | ---------------------------------------------------------------------------------------- |
+| `MB_GROUPS`            | Yes      | Comma-separated list of group keys, e.g. `db,tools,sites`                               |
+| `MB_GROUP_<KEY>_TITLE` | Yes      | Display title for a group                                                                |
+| `MB_GROUP_<KEY>_LINKS` | Yes      | Comma-separated list of link keys for this group                                         |
+| `MB_GROUP_<KEY>_ICON`  | No       | [Iconify](https://icon-sets.iconify.design/) icon name, e.g. `heroicons:circle-stack`   |
 
 ### Links
 
-| Variable              | Description              |
-| --------------------- | ------------------------ |
-| `MB_LINK_<KEY>_LABEL` | Display label for a link |
-| `MB_LINK_<KEY>_URL`   | URL for a link           |
+| Variable              | Required | Description                                                                            |
+| --------------------- | -------- | -------------------------------------------------------------------------------------- |
+| `MB_LINK_<KEY>_LABEL` | Yes      | Display label for a link                                                               |
+| `MB_LINK_<KEY>_URL`   | Yes      | URL for a link                                                                         |
+| `MB_LINK_<KEY>_ICON`  | No       | [Iconify](https://icon-sets.iconify.design/) icon name, e.g. `heroicons:server`       |
+
+Icons use [Iconify](https://icon-sets.iconify.design/), which supports 100+ icon sets including Heroicons, Font Awesome, Material Icons, and more. Browse available icons at [icon-sets.iconify.design](https://icon-sets.iconify.design/).
 
 ### Example
 
@@ -64,18 +68,23 @@ MB_GROUPS=db,tools
 
 MB_GROUP_db_TITLE=Database
 MB_GROUP_db_LINKS=pgadmin,dbgate
+MB_GROUP_db_ICON=heroicons:circle-stack
 
 MB_GROUP_tools_TITLE=Tools
 MB_GROUP_tools_LINKS=console
+MB_GROUP_tools_ICON=heroicons:wrench-screwdriver
 
 MB_LINK_pgadmin_LABEL=PgAdmin
 MB_LINK_pgadmin_URL=https://pgadmin.example.com
+MB_LINK_pgadmin_ICON=heroicons:server
 
 MB_LINK_dbgate_LABEL=DbGate
 MB_LINK_dbgate_URL=https://dbgate.example.com
+MB_LINK_dbgate_ICON=heroicons:table-cells
 
 MB_LINK_console_LABEL=Console
 MB_LINK_console_URL=https://console.example.com
+MB_LINK_console_ICON=heroicons:command-line
 ```
 
 ## Development
@@ -83,7 +92,7 @@ MB_LINK_console_URL=https://console.example.com
 Requires [just](https://github.com/casey/just).
 
 ```sh
-just dev    # Start dev containers with live reload
+just dev    # Start dev containers with automatic recompilation
 just build  # Build the production image
 just run    # Build and run the production image locally
 ```

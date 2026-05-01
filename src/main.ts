@@ -72,10 +72,14 @@ const groups = groupKeys.map((key) => {
         const url = Deno.env.get(`MB_LINK_${linkKey}_URL`);
         if (!url) errors.push(`MB_LINK_${linkKey}_URL is missing`);
 
-        return { label: label ?? linkKey, url: url ?? "#" };
+        const icon = Deno.env.get(`MB_LINK_${linkKey}_ICON`) ?? null;
+
+        return { label: label ?? linkKey, url: url ?? "#", icon };
     });
 
-    return { title: groupTitle ?? key, links };
+    const icon = Deno.env.get(`MB_GROUP_${key}_ICON`) ?? null;
+
+    return { title: groupTitle ?? key, links, icon };
 });
 
 let output: string;
@@ -87,7 +91,7 @@ if (errors.length > 0) {
 
     output = env.render("error.html", { title: "Configuration Error", errors, allEnv });
 } else {
-    output = env.render("index.html", { title, groups });
+    output = env.render("content.html", { title, groups });
 }
 
 await Promise.all([

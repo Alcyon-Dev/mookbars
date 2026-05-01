@@ -11,15 +11,18 @@
     {% if assets.js %}
     <script src="{{ assets.js }}"></script>
     {% endif %}
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </head>
 
 <body>
 
+    {% block header %}
     {% if title and not noHeader %}
     <header class="page-header">
         <h1 class="page-title">{{ title }}</h1>
     </header>
     {% endif %}
+    {% endblock %}
 
     {% block content %}{% endblock %}
 
