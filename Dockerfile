@@ -31,6 +31,8 @@ RUN deno task build
 
 FROM debian:bookworm-slim
 
+LABEL org.opencontainers.image.source="https://github.com/Alcyon-Dev/mookbars"
+
 COPY --from=caddy:2-alpine /usr/bin/caddy /usr/bin/caddy
 
 WORKDIR /app/src
