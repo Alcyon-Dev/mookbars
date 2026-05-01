@@ -8,6 +8,9 @@
     {% if assets.css %}
     <link rel="stylesheet" href="{{ assets.css }}">
     {% endif %}
+    {% if assets.js %}
+    <script src="{{ assets.js }}"></script>
+    {% endif %}
 </head>
 
 <body>
@@ -29,9 +32,6 @@
     </footer>
     {% endif %}
 
-    {% if assets.js %}
-    <script src="{{ assets.js }}"></script>
-    {% endif %}
 </body>
 
 </html>
