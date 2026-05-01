@@ -4,7 +4,7 @@ import nunjucks from "nunjucks";
 const config = {
     title: Deno.env.get("TITLE") ?? "My Page",
     heading: Deno.env.get("HEADING") ?? "Hello World",
-    envName: Deno.env.get("ENV_NAME") ?? "development",
+    envName: Deno.env.get("ENV_NAME") ?? "dev",
     version: Deno.env.get("VERSION") ?? "0.0.1",
 };
 
@@ -21,4 +21,4 @@ const output = env.render("page.html", config);
 // Write to file
 await Deno.writeTextFile("../public/index.html", output);
 
-console.log("Done — public/index.html written.");
+console.log("Done, public/index.html written.");

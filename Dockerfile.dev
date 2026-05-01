@@ -1,10 +1,8 @@
-FROM denoland/deno:alpine-2.7.14
+FROM denoland/deno:alpine-2.7.14 AS deno-dev
 
 WORKDIR /app/src
 
-# RUN apk add --no-cache watchexec
+RUN apk add --no-cache watchexec
 
 COPY ./src/deno.json src/deno.json
 RUN deno install
-
-CMD ["deno", "run", "--allow-env", "--allow-read", "--allow-write", "src/main.ts"]
