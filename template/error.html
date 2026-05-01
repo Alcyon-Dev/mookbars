@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<h2>Problems found</h2>
+<ul>
+{% for error in errors %}
+    <li>{{ error }}</li>
+{% endfor %}
+</ul>
+<h2>MB_* variables</h2>
+<table>
+    <thead>
+        <tr><th>Variable</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+    {% for entry in allEnv %}
+        <tr><td>{{ entry[0] }}</td><td>{{ entry[1] }}</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
