@@ -7,6 +7,8 @@ RUN apk add --no-cache watchexec
 COPY ./src/deno.json /app/src/deno.json
 RUN deno install
 
+CMD ["watchexec", "-w", "/app/.env", "-w", "/app/src", "-w", "/app/template/", "--", "deno", "task", "run"]
+
 
 
 FROM node:22-alpine AS assets-dev
@@ -17,3 +19,12 @@ RUN apk add --no-cache watchexec
 
 COPY ./assets/scripts/package.json /app/assets/scripts/package.json
 RUN npm install
+
+CMD ["watchexec", "-w", "/app/assets", "--", "node", "dev.js"]
+
+
+
+FROM caddy:2-alpine AS server-dev
+
+WORKDIR /app
+

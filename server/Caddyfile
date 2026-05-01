@@ -1,0 +1,21 @@
+:8007 {
+	root * /srv
+
+	handle /health {
+		respond "ok" 200
+	}
+
+	@index path / /index.html
+	handle @index {
+		rewrite * /index.html
+		file_server
+	}
+
+	handle /* {
+		file_server
+	}
+
+	handle {
+		respond "Not Found" 404
+	}
+}

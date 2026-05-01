@@ -9,7 +9,6 @@ services:
       - .:/app
     environment:
       - MB_VERSION=${MB_VERSION}
-    command: watchexec -w /app/.env -w /app/src -w /app/template/ -- deno task run
     restart: unless-stopped
 
   assets-dev:
@@ -20,18 +19,20 @@ services:
     working_dir: /app/assets/scripts
     volumes:
       - .:/app
-    command: watchexec -w /app/assets -- node dev.js
     restart: unless-stopped
 
-#   caddy:
-#     image: caddy:2-alpine
-#     volumes:
-#       - ./dist:/srv
-#       - ./server:/etc/caddy
-#     ports:
-#       - "8007:8007"
-#     restart: unless-stopped
-
-# volumes:
-#   go-cache:
-#   node-modules:
+  server-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      target: server-dev
+    working_dir: /app
+    volumes:
+      - ./public:/srv
+      - ./server:/etc/caddy
+    ports:
+      - "8007:8007"
+    restart: unless-stopped
+  # volumes:
+  #   go-cache:
+  #   node-modules:
