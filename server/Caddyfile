@@ -5,9 +5,9 @@
 		respond "ok" 200
 	}
 
-	@index path / /index.html
+	@index path /
 	handle @index {
-		rewrite * /index.html
+		try_files /index.html /missing.html
 		file_server
 	}
 
