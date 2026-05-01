@@ -14,8 +14,11 @@ FROM denoland/deno:alpine-2.7.14 AS deno-build
 
 WORKDIR /app/src
 
+ARG MB_VERSION=dev
+
 COPY ./src/ /app/src/
 RUN deno install
+RUN echo "export const version = \"${MB_VERSION}\";" > /app/src/version.ts
 
 COPY ./template/ /app/template/
 COPY --from=assets-build /app/template/assets/ /app/template/assets/

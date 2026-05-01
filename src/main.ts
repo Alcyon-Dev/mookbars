@@ -1,5 +1,6 @@
 import nunjucks from "nunjucks";
 import { load } from "@std/dotenv";
+import { version as rawVersion } from "./version.ts";
 
 try {
     await load({ envPath: "../.env", export: true });
@@ -19,7 +20,6 @@ try {
     // no manifest, skip asset injection
 }
 
-const rawVersion = Deno.env.get("MB_VERSION") ?? "?";
 const version = /^[0-9a-f]+$/.test(rawVersion)
     ? `#${rawVersion}`
     : rawVersion;
