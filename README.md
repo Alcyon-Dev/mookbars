@@ -3,6 +3,8 @@
 A lightweight self-hosted bookmark page. Configure your links via environment
 variables and Mookbars generates and serves a static HTML page.
 
+<img width="1211" height="343" alt="image" src="https://github.com/user-attachments/assets/9229d8eb-f6f7-4353-91a0-855fa3cada77" />
+
 ## Playing with Mookbars locally
 
 Copy the example env file, fill in your links, and run:
