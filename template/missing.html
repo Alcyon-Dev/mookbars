@@ -1,0 +1,14 @@
+{% extends "_base.html" %}
+
+{% block title %}No bookmarks yet{% endblock %}
+
+{% block content %}
+<main class="status-page">
+    <div class="status-card">
+        <div class="status-icon">🔖</div>
+        <h1>Bookmarks not generated yet</h1>
+        <p>Your links have not been built yet. This page will update shortly.</p>
+    </div>
+</main>
+<script>setTimeout(() => location.reload(), 2500)</script>
+{% endblock %}

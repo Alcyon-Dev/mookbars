@@ -10,6 +10,11 @@ try {
 let assets: { css?: string; js?: string } = {};
 try {
     assets = JSON.parse(await Deno.readTextFile("../template/assets/manifest.json"));
+    await Promise.all(
+        Object.values(assets).map((file) =>
+            Deno.copyFile(`../template/assets/${file}`, `../public/${file}`)
+        ),
+    );
 } catch {
     // no manifest, skip asset injection
 }
@@ -85,6 +90,9 @@ if (errors.length > 0) {
     output = env.render("index.html", { title, groups });
 }
 
-await Deno.writeTextFile("../public/index.html", output);
+await Promise.all([
+    Deno.writeTextFile("../public/index.html", output),
+    Deno.writeTextFile("../public/missing.html", env.render("missing.html", {})),
+]);
 
 console.log("Done, public/index.html written.");

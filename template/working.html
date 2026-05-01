@@ -3,6 +3,12 @@
 {% block title %}Working…{% endblock %}
 
 {% block content %}
-<meta http-equiv="refresh" content="2.5">
-<h1>Currently generating links…</h1>
+<main class="status-page">
+    <div class="status-card">
+        <div class="spinner"></div>
+        <h1>Generating bookmarks…</h1>
+        <p>Your links are being built. This page will update shortly.</p>
+    </div>
+</main>
+<script>setTimeout(() => location.reload(), 2500)</script>
 {% endblock %}

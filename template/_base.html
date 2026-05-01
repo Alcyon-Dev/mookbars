@@ -1,24 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ title }}{% endblock %}</title>
     {% if assets.css %}
-    <link rel="stylesheet" href="assets/{{ assets.css }}">{% endif %}
+    <link rel="stylesheet" href="{{ assets.css }}">
+    {% endif %}
 </head>
 
 <body>
+
+    {% if title and not noHeader %}
+    <header class="page-header">
+        <h1 class="page-title">{{ title }}</h1>
+    </header>
+    {% endif %}
+
     {% block content %}{% endblock %}
 
     {% if not noFooter %}
-    <footer>
-        <a href="https://github.com/alcyon-dev/mookbars">Mookbars</a> {{ version }} by <a
-            href="https://alcyon.dev">Alcyon Technologies</a>
+    <footer class="page-footer">
+        <a href="https://github.com/alcyon-dev/mookbars" target="_blank" rel="noopener noreferrer">Mookbars</a>
+        {{ version }}
+        by
+        <a href="https://alcyon.dev" target="_blank" rel="noopener noreferrer">Alcyon Technologies</a>
     </footer>
     {% endif %}
 
     {% if assets.js %}
-    <script src="assets/{{ assets.js }}"></script>{% endif %}
+    <script src="{{ assets.js }}"></script>
+    {% endif %}
 </body>
 
 </html>

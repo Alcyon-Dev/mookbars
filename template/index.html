@@ -3,15 +3,16 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-{% if not noHeader %}<h1>{{ title }}</h1>{% endif %}
-{% for group in groups %}
-<section>
-    <h2>{{ group.title }}</h2>
-    <ul>
-        {% for link in group.links %}
-        <li><a href="{{ link.url }}">{{ link.label }}</a></li>
-        {% endfor %}
-    </ul>
-</section>
-{% endfor %}
+<main class="links-page">
+    {% for group in groups %}
+    <section class="group">
+        <h2 class="group__title">{{ group.title }}</h2>
+        <div class="group__links">
+            {% for link in group.links %}
+            <a class="link" href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.label }}</a>
+            {% endfor %}
+        </div>
+    </section>
+    {% endfor %}
+</main>
 {% endblock %}
