@@ -1,24 +1,29 @@
 set dotenv-load := false
 
+[private]
 default:
-    @just --list
+    @just --list --unsorted
 
+[group('Development')]
 dev:
     @if [ ! -f .env ]; then cp .env.example .env; fi
     @MB_VERSION=$(git describe --tags --always) docker compose -f docker-compose.yml up --build --remove-orphans
 
-build:
-    @docker build -t alcyondev/mookbars --build-arg MB_VERSION=$(git describe --tags --always) .
+[group('Build')]
+build image="alcyondev/mookbars":
+    @docker build -t {{image}} --build-arg MB_VERSION=$(git describe --tags --always) .
 
-run:
-    @just build
-    @docker run --rm --name mookbars --env-file .env -p 8007:8007 alcyondev/mookbars
+[group('Build')]
+run image="alcyondev/mookbars":
+    @just build {{image}}
+    @docker run --rm --name mookbars --env-file .env -p 8007:8007 {{image}}
 
-deploy version:
+[group('Deployment')]
+deploy version image="alcyondev/mookbars":
   @git tag -a {{version}} -m "{{version}}"
   @git push --tags
-  @just build
-  @docker tag alcyondev/mookbars alcyondev/mookbars:{{version}}
-  @docker tag alcyondev/mookbars alcyondev/mookbars:latest
-  @docker push alcyondev/mookbars:{{version}}
-  @docker push alcyondev/mookbars:latest
+  @just build {{image}}
+  @docker tag {{image}} {{image}}:{{version}}
+  @docker tag {{image}} {{image}}:latest
+  @docker push {{image}}:{{version}}
+  @docker push {{image}}:latest
