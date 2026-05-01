@@ -1,12 +1,28 @@
 import nunjucks from "nunjucks";
 
-// Read env vars with fallbacks
-const config = {
-    title: Deno.env.get("TITLE") ?? "My Page",
-    heading: Deno.env.get("HEADING") ?? "Hello World",
-    envName: Deno.env.get("ENV_NAME") ?? "dev",
-    version: Deno.env.get("VERSION") ?? "0.0.1",
-};
+const title = Deno.env.get("MB_TITLE") ?? "My Bookmarks";
+
+const groupKeys = (Deno.env.get("MB_GROUPS") ?? "")
+    .split(",")
+    .map((k) => k.trim())
+    .filter(Boolean);
+
+const groups = groupKeys.map((key) => {
+    const groupTitle = Deno.env.get(`MB_GROUP_${key}_TITLE`) ?? key;
+    const linkKeys = (Deno.env.get(`MB_GROUP_${key}_LINKS`) ?? "")
+        .split(",")
+        .map((k) => k.trim())
+        .filter(Boolean);
+
+    const links = linkKeys.map((linkKey) => ({
+        label: Deno.env.get(`MB_LINK_${linkKey}_LABEL`) ?? linkKey,
+        url: Deno.env.get(`MB_LINK_${linkKey}_URL`) ?? "#",
+    }));
+
+    return { title: groupTitle, links };
+});
+
+const config = { title, groups };
 
 // Init Nunjucks pointing at templates dir
 const env = nunjucks.configure("../template", {
