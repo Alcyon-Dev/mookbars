@@ -19,6 +19,7 @@ const env = nunjucks.configure("../template", {
     lstripBlocks: true,
 });
 env.addGlobal("version", version);
+env.addGlobal("noHeader", Deno.env.get("MB_NO_HEADER") === "true");
 env.addGlobal("noFooter", Deno.env.get("MB_NO_FOOTER") === "true");
 
 await Deno.writeTextFile("../public/index.html", env.render("working.html", {}));

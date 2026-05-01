@@ -3,7 +3,7 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<h1>{{ title }}</h1>
+{% if not noHeader %}<h1>{{ title }}</h1>{% endif %}
 {% for group in groups %}
 <section>
     <h2>{{ group.title }}</h2>

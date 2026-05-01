@@ -1,5 +1,9 @@
 .env
 
+!template/assets/
+template/assets/*
+!template/assets/.gitkeep
+
 !dist/
 dist/*
 !dist/.gitkeep

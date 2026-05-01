@@ -4,5 +4,16 @@ WORKDIR /app/src
 
 RUN apk add --no-cache watchexec
 
-COPY ./src/deno.json src/deno.json
+COPY ./src/deno.json /app/src/deno.json
 RUN deno install
+
+
+
+FROM node:22-alpine AS assets-dev
+
+WORKDIR /app/assets/scripts
+
+RUN apk add --no-cache watchexec
+
+COPY ./assets/scripts/package.json /app/assets/scripts/package.json
+RUN npm install

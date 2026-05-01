@@ -9,30 +9,19 @@ services:
       - .:/app
     environment:
       - MB_VERSION=${MB_VERSION}
-    command: >
-      watchexec -w /app/.env -w /app/src -w /app/template/ -- deno task run
+    command: watchexec -w /app/.env -w /app/src -w /app/template/ -- deno task run
+    restart: unless-stopped
 
-#   go-watcher:
-#     build:
-#       context: .
-#       dockerfile: Dockerfile.dev
-#     env_file:
-#       - path: ${MB_ENV_FILE:-.env.dev}
-#     volumes:
-#       - .:/app
-#       - go-cache:/go/pkg/mod
-#     depends_on:
-#       - caddy
-#     restart: unless-stopped
-
-#   asset-watcher:
-#     image: node:22-alpine
-#     working_dir: /app
-#     volumes:
-#       - .:/app
-#       - node-modules:/app/node_modules
-#     command: sh -c "npm install && node scripts/dev-assets.js --watch"
-#     restart: unless-stopped
+  assets-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      target: assets-dev
+    working_dir: /app/assets/scripts
+    volumes:
+      - .:/app
+    command: watchexec -w /app/assets -- node dev.js
+    restart: unless-stopped
 
 #   caddy:
 #     image: caddy:2-alpine
