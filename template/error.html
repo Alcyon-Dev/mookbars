@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "_base.html" %}
 
 {% block title %}{{ title }}{% endblock %}
 
@@ -6,19 +6,25 @@
 <h1>{{ title }}</h1>
 <h2>Problems found</h2>
 <ul>
-{% for error in errors %}
+    {% for error in errors %}
     <li>{{ error }}</li>
-{% endfor %}
+    {% endfor %}
 </ul>
 <h2>MB_* variables</h2>
 <table>
     <thead>
-        <tr><th>Variable</th><th>Value</th></tr>
+        <tr>
+            <th>Variable</th>
+            <th>Value</th>
+        </tr>
     </thead>
     <tbody>
-    {% for entry in allEnv %}
-        <tr><td>{{ entry[0] }}</td><td>{{ entry[1] }}</td></tr>
-    {% endfor %}
+        {% for entry in allEnv %}
+        <tr>
+            <td>{{ entry[0] }}</td>
+            <td>{{ entry[1] }}</td>
+        </tr>
+        {% endfor %}
     </tbody>
 </table>
 {% endblock %}

@@ -16,7 +16,7 @@ const env = nunjucks.configure("../template", {
 
 const errors: string[] = [];
 
-const title = Deno.env.get("MB_TITLE") ?? "My Bookmarks";
+const title = Deno.env.get("MB_TITLE") ?? "Mookbars";
 
 const mbGroups = Deno.env.get("MB_GROUPS");
 if (!mbGroups?.trim()) {
@@ -58,7 +58,7 @@ if (errors.length > 0) {
 
     output = env.render("error.html", { title: "Configuration Error", errors, allEnv });
 } else {
-    output = env.render("page.html", { title, groups });
+    output = env.render("index.html", { title, groups });
 }
 
 await Deno.writeTextFile("../public/index.html", output);

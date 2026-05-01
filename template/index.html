@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "_base.html" %}
 
 {% block title %}{{ title }}{% endblock %}
 
@@ -8,9 +8,9 @@
 <section>
     <h2>{{ group.title }}</h2>
     <ul>
-    {% for link in group.links %}
+        {% for link in group.links %}
         <li><a href="{{ link.url }}">{{ link.label }}</a></li>
-    {% endfor %}
+        {% endfor %}
     </ul>
 </section>
 {% endfor %}
