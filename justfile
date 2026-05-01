@@ -13,3 +13,12 @@ build:
 run:
     @just build
     @docker run --rm --name mookbars --env-file .env -p 8007:8007 alcyondev/mookbars
+
+deploy version:
+  @git tag -a {{version}} -m "{{version}}"
+  @git push --tags
+  @just build
+  @docker tag alcyondev/mookbars alcyondev/mookbars:{{version}}
+  @docker tag alcyondev/mookbars alcyondev/mookbars:latest
+  @docker push alcyondev/mookbars:{{version}}
+  @docker push alcyondev/mookbars:latest
