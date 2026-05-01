@@ -22,7 +22,8 @@ Open [http://localhost:8007](http://localhost:8007).
 ## Deploying Mookbars in production
 
 Add the `alcyondev/mookbars:0.1` docker image to your favorite stack, configure
-the environment variables, are you are done !
+the environment variables, are you are done ! Configure your load balancer or
+reverse proxy to foward port 8007, or expose it directly to the internet.
 
 ## Environment variables
 
