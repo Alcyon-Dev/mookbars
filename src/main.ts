@@ -7,7 +7,10 @@ try {
     // .env not found, continue with environment as-is
 }
 
-const version = Deno.env.get("MB_VERSION") ?? "unknown";
+const rawVersion = Deno.env.get("MB_VERSION") ?? "?";
+const version = /^[0-9a-f]+$/.test(rawVersion)
+    ? `#${rawVersion}`
+    : rawVersion.startsWith("v") ? rawVersion : `v${rawVersion}`;
 
 // Init Nunjucks pointing at templates dir
 const env = nunjucks.configure("../template", {
@@ -16,6 +19,7 @@ const env = nunjucks.configure("../template", {
     lstripBlocks: true,
 });
 env.addGlobal("version", version);
+env.addGlobal("noFooter", Deno.env.get("MB_NO_FOOTER") === "true");
 
 await Deno.writeTextFile("../public/index.html", env.render("working.html", {}));
 

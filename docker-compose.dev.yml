@@ -7,8 +7,10 @@ services:
     working_dir: /app/src
     volumes:
       - .:/app
+    environment:
+      - MB_VERSION=${MB_VERSION}
     command: >
-      sh -c "export MB_VERSION=$$(git describe --tags --always) && exec watchexec -w /app/.env -w /app/src -w /app/template/ -- deno task run"
+      watchexec -w /app/.env -w /app/src -w /app/template/ -- deno task run
 
 #   go-watcher:
 #     build:
