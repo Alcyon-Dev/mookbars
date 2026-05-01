@@ -25,6 +25,3 @@ CMD ["watchexec", "-w", "/app/assets", "--", "node", "dev.js"]
 
 
 FROM caddy:2-alpine AS server-dev
-
-WORKDIR /app
-
