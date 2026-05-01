@@ -7,16 +7,8 @@ services:
     working_dir: /app/src
     volumes:
       - .:/app
-    env_file:
-      - path: ${MB_ENV_FILE:-.env}
-    environment:
-      # TODO : REMOVE
-      - TITLE=My Site in docker !
-      - HEADING=Welcome
-      - ENV_NAME=development
-      - VERSION=1.0.0
     command: >
-      watchexec -w /app/src -w /app/template/ -- deno task run
+      watchexec -w /app/.env -w /app/src -w /app/template/ -- deno task run
 
 #   go-watcher:
 #     build:

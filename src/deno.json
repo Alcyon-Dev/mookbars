@@ -5,6 +5,7 @@
     },
     "imports": {
         "nunjucks": "npm:nunjucks@^3",
+        "@std/dotenv": "jsr:@std/dotenv@^0.225.6",
         "@types/nunjucks": "npm:@types/nunjucks@^3"
     }
 }

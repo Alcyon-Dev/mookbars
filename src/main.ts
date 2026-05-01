@@ -1,4 +1,11 @@
 import nunjucks from "nunjucks";
+import { load } from "@std/dotenv";
+
+try {
+    await load({ envPath: "../.env", export: true });
+} catch {
+    // .env not found, continue with environment as-is
+}
 
 // Init Nunjucks pointing at templates dir
 const env = nunjucks.configure("../template", {
