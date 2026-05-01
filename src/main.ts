@@ -14,6 +14,14 @@ const env = nunjucks.configure("../template", {
     lstripBlocks: true,
 });
 
+await Deno.writeTextFile("../public/index.html", env.render("working.html", {}));
+
+const delay = Number(Deno.env.get("MB_DELAY") ?? 0);
+if (delay > 0) {
+    console.log(`MB_DELAY set, waiting ${delay}s…`);
+    await new Promise((r) => setTimeout(r, delay * 1000));
+}
+
 const errors: string[] = [];
 
 const title = Deno.env.get("MB_TITLE") ?? "Mookbars";
