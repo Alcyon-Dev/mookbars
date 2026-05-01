@@ -8,7 +8,7 @@ services:
     volumes:
       - .:/app
     command: >
-      watchexec -w /app/.env -w /app/src -w /app/template/ -- deno task run
+      sh -c "export MB_VERSION=$$(git describe --tags --always) && exec watchexec -w /app/.env -w /app/src -w /app/template/ -- deno task run"
 
 #   go-watcher:
 #     build:

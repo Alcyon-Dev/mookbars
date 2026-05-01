@@ -7,12 +7,15 @@ try {
     // .env not found, continue with environment as-is
 }
 
+const version = Deno.env.get("MB_VERSION") ?? "unknown";
+
 // Init Nunjucks pointing at templates dir
 const env = nunjucks.configure("../template", {
     autoescape: true,
     trimBlocks: true,
     lstripBlocks: true,
 });
+env.addGlobal("version", version);
 
 await Deno.writeTextFile("../public/index.html", env.render("working.html", {}));
 
