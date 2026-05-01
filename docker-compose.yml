@@ -28,7 +28,7 @@ services:
       target: server-dev
     working_dir: /app
     volumes:
-      - ./public:/srv
+      - ./public:/app/public
       - ./server:/etc/caddy
     ports:
       - "8007:8007"

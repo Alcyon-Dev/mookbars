@@ -1,5 +1,3 @@
 // Mookbars — no framework, no runtime deps
 
-function autoReload() {
-    setTimeout(() => location.reload(), 2500);
-}
+globalThis._autoReload = () => setTimeout(() => location.reload(), 2500);

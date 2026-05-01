@@ -7,8 +7,9 @@ dev:
     @if [ ! -f .env ]; then cp .env.example .env; fi
     @MB_VERSION=$(git describe --tags --always) docker compose -f docker-compose.yml up --build --remove-orphans
 
-#build:
-#    docker build -t mookbars --build-arg VERSION=$(git describe --tags --always) .
+build:
+    @docker build -t alcyondev/mookbars --build-arg MB_VERSION=$(git describe --tags --always) .
 
-#run:
-#    VERSION=$(git describe --tags --always) MB_ENV_FILE={{env}} docker compose up --build --remove-orphans
+run:
+    @docker build -t alcyondev/mookbars --build-arg MB_VERSION=$(git describe --tags --always) .
+    @docker run --rm --name mookbars --env-file .env -p 8007:8007 mookbars

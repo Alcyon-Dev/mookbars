@@ -22,7 +22,7 @@ try {
 const rawVersion = Deno.env.get("MB_VERSION") ?? "?";
 const version = /^[0-9a-f]+$/.test(rawVersion)
     ? `#${rawVersion}`
-    : rawVersion.startsWith("v") ? rawVersion : `v${rawVersion}`;
+    : rawVersion;
 
 // Init Nunjucks pointing at templates dir
 const env = nunjucks.configure("../template", {

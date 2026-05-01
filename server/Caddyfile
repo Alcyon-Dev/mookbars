@@ -1,5 +1,5 @@
 :8007 {
-	root * /srv
+	root * /app/public
 
 	handle /health {
 		respond "ok" 200
