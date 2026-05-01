@@ -7,6 +7,13 @@ try {
     // .env not found, continue with environment as-is
 }
 
+let assets: { css?: string; js?: string } = {};
+try {
+    assets = JSON.parse(await Deno.readTextFile("../template/assets/manifest.json"));
+} catch {
+    // no manifest, skip asset injection
+}
+
 const rawVersion = Deno.env.get("MB_VERSION") ?? "?";
 const version = /^[0-9a-f]+$/.test(rawVersion)
     ? `#${rawVersion}`
@@ -19,6 +26,7 @@ const env = nunjucks.configure("../template", {
     lstripBlocks: true,
 });
 env.addGlobal("version", version);
+env.addGlobal("assets", assets);
 env.addGlobal("noHeader", Deno.env.get("MB_NO_HEADER") === "true");
 env.addGlobal("noFooter", Deno.env.get("MB_NO_FOOTER") === "true");
 

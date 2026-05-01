@@ -3,6 +3,8 @@
 
 <head>
     <title>{% block title %}{{ title }}{% endblock %}</title>
+    {% if assets.css %}
+    <link rel="stylesheet" href="assets/{{ assets.css }}">{% endif %}
 </head>
 
 <body>
@@ -14,6 +16,9 @@
             href="https://alcyon.dev">Alcyon Technologies</a>
     </footer>
     {% endif %}
+
+    {% if assets.js %}
+    <script src="assets/{{ assets.js }}"></script>{% endif %}
 </body>
 
 </html>
