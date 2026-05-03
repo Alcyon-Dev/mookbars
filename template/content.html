@@ -3,6 +3,13 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
+{% if demo %}
+<div class="demo-banner">
+    Running in demo mode - set your own links using <a
+        href="https://github.com/alcyon-dev/mookbars#environment-variables" target="_blank"
+        rel="noopener noreferrer">environment variables</a>.
+</div>
+{% endif %}
 <main class="links-page">
     {% for group in groups %}
     {% include "group.html" %}

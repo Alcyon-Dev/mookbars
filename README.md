@@ -5,6 +5,16 @@ variables and Mookbars generates and serves a static HTML page.
 
 <img width="831" height="397" alt="image" src="https://github.com/user-attachments/assets/4312d0a9-8dba-418d-a4d8-d306f35ec06a" />
 
+## Try it instantly
+
+No configuration needed, run with demo mode to see a live preview:
+
+```sh
+docker run --rm -e MB_DEMO=true -p 8007:8007 alcyondev/mookbars:latest
+```
+
+Open [http://localhost:8007](http://localhost:8007).
+
 ## Playing with Mookbars locally
 
 Copy the example env file, fill in your links, and run:
@@ -26,7 +36,7 @@ will rebuild and update the static HTML page, just refresh your browser !
 
 Add the `alcyondev/mookbars:latest` docker image to your favorite stack,
 configure the environment variables, are you are done ! Configure your load
-balancer or reverse proxy to foward port 8007, or expose it directly to the
+balancer or reverse proxy to forward port 8007, or expose it directly to the
 internet.
 
 ## Environment variables
